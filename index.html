@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="display"></div>
+    <dialog id="dialog">
+        <button autofocus>Close</button>
+        <form id="new-book-form">
+            <label for="title-form">Please enter the title of the book:</label>
+            <input type="text" id="title-form" name="title">
+            <br>
+            <label for="author-form">Please enter the name of author of the book:</label>
+            <input type="text" id="author-form" name="author">
+            <br>
+            <label for="pages-form">Please enter the number of pages in the book:</label>
+            <input type="text" id="pages-form" name="pages">
+            <br>
+            <p>Have you read the book</p>
+            <input type="radio" id="radio-form-true"  value="true">
+            <label for="true">Yes</label>
+            <input type="radio" id="radio-form-false"  value="false">
+            <label for="false">No</label>
+            <br>
+            <button type="submit" >submit</button>
+
+        </form>
+    </dialog>
+    
+    <button id="new-book-button">New Book</button>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>
