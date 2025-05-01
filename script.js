@@ -1,8 +1,9 @@
 const display = document.getElementById("display");
-const newBookBtn = document.querySelector(" dialog + button ")
+const newBookBtn = document.getElementById("new-book-button")
 const dialog = document.getElementById("dialog");
 const closeBtn = document.querySelector("dialog button")
 const form = document.getElementById("new-book-form")
+
 
 
 let library =[];
@@ -20,18 +21,15 @@ function Book(title,author,pages){
 }
 
 
-function addBookToLibrary(title,author,pages){
-    library.push({title : title,
-                  author : author,
-                  pages: pages
-     })
+function addBookToLibrary(book){
+    library.push(book)
      displayBooks();
 }
 
 function displayBooks(){
     display.innerHTML = ``
     library.forEach(book => {
-        display.innerHTML += `<div class="card"><h3>${book.title}</h3></br><h4>${book.author}</h4></br><p>pages ${book.pages}</p></br> <button id="delete-book">Remove Book</button></div>`
+        display.innerHTML += `<div class="card"><h3>${book.title}</h3></br><h4>${book.author}</h4></br><p>pages ${book.pages}</p></br> <button class="delete-book" data-id="${book.id}">Remove Book</button></div>`
     })
 }
 
@@ -46,6 +44,7 @@ closeBtn.addEventListener("click", () => {
   
 });
 
+
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
     console.log("in second add")
@@ -54,6 +53,16 @@ form.addEventListener('submit',(e)=>{
     const author = formData.get('author')
     const pages = formData.get('pages')
     const newBook = new Book(title,author,pages)
-    addBookToLibrary(newBook.title,newBook.author,newBook.pages);
+    addBookToLibrary(newBook);
     dialog.close();
 })
+
+display.addEventListener('click', (e) => {
+    if (e.target.classList.contains('delete-book')) {
+        const id = e.target.dataset.id;
+        console.log("Deleting book with ID:", id);
+        library = library.filter(book => book.id !== id);
+        displayBooks();
+    }
+});
+
